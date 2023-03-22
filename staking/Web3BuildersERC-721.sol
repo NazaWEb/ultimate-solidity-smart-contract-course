@@ -73,13 +73,14 @@ contract Web3Builders is ERC721, ERC721Enumerable, Pausable, Ownable {
         }
     }
 
-    function _beforeTokenTransfer(address from, address to, uint256 tokenId)
-        internal
-        whenNotPaused
-        override(ERC721, ERC721Enumerable)
-    {
-        super._beforeTokenTransfer(from, to, tokenId);
-    }
+    function _beforeTokenTransfer(
+        address from,
+        address to,
+        uint256 firstTokenId,
+        uint256 batchSize
+    ) internal virtual override(ERC721, ERC721Enumerable) {
+        return super._beforeTokenTransfer(from, to, firstTokenId, batchSize);
+    }  
 
     function supportsInterface(bytes4 interfaceId)
         public
